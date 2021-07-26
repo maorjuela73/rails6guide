@@ -9,3 +9,38 @@
 </ul>
 
 <%= link_to "New Article", new_article_path %>
+
+<div>
+    <a href="#" data-background-color="#990000">Paint it red</a>
+</div>
+
+<div>
+    <a href="#" data-background-color="#009900">Paint it green</a>
+</div>
+
+<div>
+    <a href="#" data-background-color="#000099"  data-text-color="#FFFFFF">Paint it blue</a>
+</div>
+
+<script>
+    function paintIt(element, backgroundColor, textColor) {
+        element.style.backgroundColor = backgroundColor;
+        if (textColor) {
+            element.style.color = textColor;
+        }
+    }
+
+    window.addEventListener("load", () => {
+        const links = document.querySelectorAll(
+            "a[data-background-color]"
+        );
+        links.forEach((element) => {
+            element.addEventListener("click", (event) => {
+                event.preventDefault();
+
+                const {backgroundColor, textColor} = element.dataset;
+                paintIt(element, backgroundColor, textColor);
+            });
+        });
+    });
+</script>
